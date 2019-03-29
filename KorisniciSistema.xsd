@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici"
+    xmlns:sj1="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
+    xmlns:usr="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici">
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
+        schemaLocation="AgentskiModul.xsd"/>
+    <xs:element name="Korisnici">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="usr:Poslovni_korisnici"/>
+                <xs:element ref="usr:Administrator"/>
+                <xs:element minOccurs="1" name="Registorvani_korisnici"
+                    type="usr:TKrajnji_korisnici"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Poslovni_korisnici">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="usr:TKorisnici">
+                    <xs:sequence>
+                        <xs:element name="Poslovni_maticni_broj" type="xs:int"/>
+                        <xs:element name="Status_odobrenosti" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Administrator" type="usr:TKorisnici"/>
+    <xs:complexType name="TKorisnici">
+        <xs:sequence>
+            <xs:element name="Ime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Prezime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Adresa" type="sj1:TAdresa"/>
+            <xs:element name="Email">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Za-z0-9]+[@][A-Za-z0-9]+[.com]"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Korisnicko_ime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="pasword">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="8"/>
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TKrajnji_korisnici">
+        <xs:complexContent>
+            <xs:extension base="usr:TKorisnici">
+                <xs:sequence>
+                    <xs:element default="aktivan" name="Status">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="aktivan|blokiran|uklonjen"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

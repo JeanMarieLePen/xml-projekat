@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat?preview=107128"
+    xmlns:ps="https://enastava.ftninformatika.com/courses/257/files/folder/projekat?preview=107128">
+    <xs:element name="Pretrazivanje_smestaja">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Osnovna_pretraga" type="ps:TObicna_pretraga"/>
+                <xs:element name="Napredna_pretraga" type="ps:TNapredna_pretraga"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType abstract="true" name="TPretraga">
+        <xs:sequence>
+            <xs:element name="Mesto" type="xs:string"/>
+            <xs:element name="Vremenski_interval"/>
+            <xs:element name="Broj_osoba" type="xs:positiveInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TObicna_pretraga">
+        <xs:complexContent>
+            <xs:extension base="ps:TPretraga"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TNapredna_pretraga">
+        <xs:complexContent>
+            <xs:extension base="ps:TPretraga">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="Tip_smestaja" type="ps:TSmestaja"/>
+                    <xs:element name="Kategorija_smestaja" type="ps:TKategorija_Smestaja"/>
+                    <xs:element name="Udaljenost_od_trazene_lokacije">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:fractionDigits value="2"/>
+                                <xs:totalDigits value="5"/>
+                                <xs:minInclusive value="0"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Dodatne_usluge" type="ps:TDodatne_usluge"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TSmestaja">
+        <xs:choice>
+            <xs:element name="Hotel"/>
+            <xs:element name="bed_and_breakfast"/>
+            <xs:element name="Apartman"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="TKategorija_Smestaja">
+        <xs:choice>
+            <xs:element name="nekategorizovan"/>
+            <xs:element name="kategorizovan">
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="jedna_zvezidaca" type="ps:TCheck_box"/>
+                        <xs:element name="dve_zvezdice" type="ps:TCheck_box"/>
+                        <xs:element name="tri_zvezdice" type="ps:TCheck_box"/>
+                        <xs:element name="cetiri_zvezdice" type="ps:TCheck_box"/>
+                        <xs:element name="pet_zvezdica" type="ps:TCheck_box"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="TVremenski_interval">
+        <xs:sequence>
+            <xs:element name="Od" type="xs:date"/>
+            <xs:element name="Do" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TCheck_box">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:complexType name="TDodatne_usluge">
+        <xs:sequence>
+            <xs:element name="Parking" type="ps:TCheck_box"/>
+            <xs:element name="WiFi" type="ps:TCheck_box"/>
+            <xs:element name="Dorucak" type="ps:TCheck_box"/>
+            <xs:element name="Polu_pansion" type="ps:TCheck_box"/>
+            <xs:element name="Pansion" type="ps:TCheck_box"/>
+            <xs:element name="All_Inclusive" type="ps:TCheck_box"/>
+            <xs:element name="Dozvoljeni_kucni_ljubimci" type="ps:TCheck_box"/>
+            <xs:element name="TV" type="ps:TCheck_box"/>
+            <xs:element name="Mini_kuhinja" type="ps:TCheck_box"/>
+            <xs:element name="Kuhinja" type="ps:TCheck_box"/>
+            <xs:element name="Privatno_kupatilo" type="ps:TCheck_box"/>
+            <xs:element name="Besplatno_otkazivanje" type="ps:TCheck_box"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

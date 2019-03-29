@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
+    xmlns:ps="https://enastava.ftninformatika.com/courses/257/files/folder/projekat?preview=107128"
+    xmlns:sj="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica">
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat?preview=107128"
+        schemaLocation="KorisnickiModul.xsd"/>
+    <xs:element name="Smestaj">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="Smestajna_jedinica" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Adresa" type="sj:TAdresa"/>
+                            <xs:element name="TIp_smestaja" type="ps:TSmestaja"/>
+                            <xs:element name="Tekstualni_opis">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:length value="240"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="1" name="Slika_smestaja"
+                                type="xs:string"/>
+                            <xs:element name="Broj_osoba" type="xs:positiveInteger"/>
+                            <xs:element name="Dodatne_usluge" type="ps:TDodatne_usluge"/>
+                            <xs:element maxOccurs="1" name="Terminski_plan_cena">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute id="Id" name="IdSmestajne_jedinice" type="xs:int"/>
+                        <xs:attribute form="unqualified" name="zauzetost" type="xs:boolean"
+                            use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="IdSmestaja"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TAdresa">
+        <xs:sequence>
+            <xs:element name="Mesto" type="xs:string"/>
+            <xs:element name="Postanski_broj" type="xs:int"/>
+            <xs:element name="Ulica" type="xs:string"/>
+            <xs:element name="Broj" type="xs:int"/>
+            <xs:element name="Kordinate" minOccurs="0">
+                <xs:complexType>
+                    <xs:attribute name="width">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minInclusive value="0"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="height">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minInclusive value="0"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
