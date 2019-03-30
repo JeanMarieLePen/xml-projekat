@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/ts"
+    xmlns:ts="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/ts"
+    xmlns:sj="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
+    xmlns:usr="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici">
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
+        schemaLocation="AgentskiModul.xsd"/>
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici"
+        schemaLocation="KorisniciSistema.xsd"/>
+    <xs:element name="Rezervacija">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_smestaja" type="xs:int"/>
+                <xs:element default="" name="termin_rezervacije" type="xs:string"/>
+                <xs:element name="ID_klijenta" type="xs:int"/>
+                <xs:element name="cena_usluge" type="xs:positiveInteger"/>
+            </xs:sequence>
+            <xs:attribute name="ID_rezervacije"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Otkazivanje_rezervacije">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_rezervacije" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Komentar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sadrzaj_komentara">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="400"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="ID_klijenta"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Ocena">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="visina_ocene" type="xs:positiveInteger"/>
+                <xs:element name="ID_klijenta" type="xs:positiveInteger"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
