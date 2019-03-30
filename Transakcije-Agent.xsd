@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/agent"
+    xmlns="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/agent"
+    xmlns:sj="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica">
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
+        schemaLocation="AgentskiModul.xsd"/>
+    <xs:element name="Dodavanje_izmena_ponude">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sj:Smestajna_jedinica"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Uklanjanje_ponude">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="IdSmestajne_jedinice" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Potvrda_realizacije_rezervacije">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_klijenta" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Komentar_poruka">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_klijenta"/>
+                <xs:element name="tekst_poruke">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="400"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
