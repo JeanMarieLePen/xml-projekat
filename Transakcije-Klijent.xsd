@@ -3,18 +3,22 @@
     targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/ts"
     xmlns:ts="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/ts"
     xmlns:sj="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
-    xmlns:usr="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici">
+    xmlns:usr="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici"
+    xmlns:ps="https://enastava.ftninformatika.com/courses/257/files/folder/projekat?preview=107128">
     <xs:import
         namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/smestajna_jedinica"
         schemaLocation="AgentskiModul.xsd"/>
     <xs:import
         namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/korisnici"
         schemaLocation="KorisniciSistema.xsd"/>
+    <xs:import id="km"
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat?preview=107128"
+        schemaLocation="KorisnickiModul.xsd"/>
     <xs:element name="Rezervacija">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="ID_smestaja" type="xs:int"/>
-                <xs:element default="" name="termin_rezervacije" type="xs:string"/>
+                <xs:element name="termin_rezervacije" type="ps:TVremenski_interval"/>
                 <xs:element name="ID_klijenta" type="xs:int"/>
                 <xs:element name="cena_usluge" type="xs:positiveInteger"/>
             </xs:sequence>
