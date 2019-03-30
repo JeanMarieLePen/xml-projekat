@@ -13,7 +13,7 @@
     <xs:complexType abstract="true" name="TPretraga">
         <xs:sequence>
             <xs:element name="Mesto" type="xs:string"/>
-            <xs:element name="Vremenski_interval"/>
+            <xs:element name="Vremenski_interval" type="ps:TVremenski_interval"/>
             <xs:element name="Broj_osoba" type="xs:positiveInteger"/>
         </xs:sequence>
     </xs:complexType>
@@ -32,7 +32,7 @@
                         <xs:simpleType>
                             <xs:restriction base="xs:decimal">
                                 <xs:fractionDigits value="2"/>
-                                <xs:totalDigits value="5"/>
+                                <xs:totalDigits value="10"/>
                                 <xs:minInclusive value="0"/>
                             </xs:restriction>
                         </xs:simpleType>
@@ -76,18 +76,29 @@
     </xs:simpleType>
     <xs:complexType name="TDodatne_usluge">
         <xs:sequence>
-            <xs:element name="Parking" type="ps:TCheck_box"/>
-            <xs:element name="WiFi" type="ps:TCheck_box"/>
-            <xs:element name="Dorucak" type="ps:TCheck_box"/>
-            <xs:element name="Polu_pansion" type="ps:TCheck_box"/>
-            <xs:element name="Pansion" type="ps:TCheck_box"/>
-            <xs:element name="All_Inclusive" type="ps:TCheck_box"/>
-            <xs:element name="Dozvoljeni_kucni_ljubimci" type="ps:TCheck_box"/>
-            <xs:element name="TV" type="ps:TCheck_box"/>
-            <xs:element name="Mini_kuhinja" type="ps:TCheck_box"/>
-            <xs:element name="Kuhinja" type="ps:TCheck_box"/>
-            <xs:element name="Privatno_kupatilo" type="ps:TCheck_box"/>
-            <xs:element name="Besplatno_otkazivanje" type="ps:TCheck_box"/>
+            <xs:element maxOccurs="unbounded" ref="ps:Usluga"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:element name="Usluga">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Naziv_usluge" type="xs:string"/>
+                <xs:element name="Cena_usluge">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:minInclusive value="0"/>
+                            <xs:fractionDigits value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element minOccurs="0" name="Opis_usluge">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:length value="250"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

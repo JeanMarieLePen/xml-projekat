@@ -9,35 +9,7 @@
     <xs:element name="Smestaj">
         <xs:complexType>
             <xs:sequence maxOccurs="1">
-                <xs:element name="Smestajna_jedinica" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Adresa" type="sj:TAdresa"/>
-                            <xs:element name="TIp_smestaja" type="ps:TSmestaja"/>
-                            <xs:element name="Tekstualni_opis">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:length value="240"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                            <xs:element maxOccurs="unbounded" minOccurs="1" name="Slika_smestaja"
-                                type="xs:string"/>
-                            <xs:element name="Broj_osoba" type="xs:positiveInteger"/>
-                            <xs:element name="Dodatne_usluge" type="ps:TDodatne_usluge"/>
-                            <xs:element maxOccurs="1" name="Terminski_plan_cena">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:decimal">
-                                        <xs:fractionDigits value="2"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute id="Id" name="IdSmestajne_jedinice" type="xs:int"/>
-                        <xs:attribute form="unqualified" name="zauzetost" type="xs:boolean"
-                            use="required"/>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element maxOccurs="unbounded" ref="sj:Smestajna_jedinica"/>
             </xs:sequence>
             <xs:attribute name="IdSmestaja"/>
         </xs:complexType>
@@ -50,16 +22,16 @@
             <xs:element name="Broj" type="xs:int"/>
             <xs:element name="Kordinate" minOccurs="0">
                 <xs:complexType>
-                    <xs:attribute name="width">
+                    <xs:attribute name="longitude">
                         <xs:simpleType>
-                            <xs:restriction base="xs:decimal">
+                            <xs:restriction base="xs:float">
                                 <xs:minInclusive value="0"/>
                             </xs:restriction>
                         </xs:simpleType>
                     </xs:attribute>
-                    <xs:attribute name="height">
+                    <xs:attribute name="latitude">
                         <xs:simpleType>
-                            <xs:restriction base="xs:decimal">
+                            <xs:restriction base="xs:float">
                                 <xs:minInclusive value="0"/>
                             </xs:restriction>
                         </xs:simpleType>
@@ -68,4 +40,34 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="TSlika">
+        <xs:attribute name="url" type="xs:string"/>
+    </xs:complexType>
+    <xs:element name="Smestajna_jedinica">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Adresa" type="sj:TAdresa"/>
+                <xs:element name="TIp_smestaja" type="ps:TSmestaja"/>
+                <xs:element name="Tekstualni_opis">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:length value="240"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="Slika_smestaja"
+                    type="sj:TSlika"/>
+                <xs:element name="Broj_osoba" type="xs:positiveInteger"/>
+                <xs:element name="Dodatne_usluge" type="ps:TDodatne_usluge"/>
+                <xs:element maxOccurs="1" name="Terminski_plan_cena">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:float"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="zauzet" type="xs:boolean"/>
+                <xs:element name="Broj_dana_za_otkaz" type="xs:positiveInteger"/>
+            </xs:sequence>
+            <xs:attribute id="Id" name="IdSmestajne_jedinice" type="xs:int"/>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

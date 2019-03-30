@@ -8,12 +8,12 @@
         schemaLocation="AgentskiModul.xsd"/>
     <xs:element name="Korisnici">
         <xs:complexType>
-            <xs:sequence>
+            <xs:choice>
                 <xs:element ref="usr:Poslovni_korisnici"/>
                 <xs:element ref="usr:Administrator"/>
                 <xs:element minOccurs="1" name="Registorvani_korisnici"
                     type="usr:TKrajnji_korisnici"/>
-            </xs:sequence>
+            </xs:choice>
         </xs:complexType>
     </xs:element>
     <xs:element name="Poslovni_korisnici">
