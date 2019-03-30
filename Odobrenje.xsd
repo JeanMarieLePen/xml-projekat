@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:adm="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje">
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje"
+        schemaLocation="administriranje.xsd"/>
+    <xs:element name="Odobrenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="adm:Administriranje"/>
+                <xs:element name="Objekat_ID" type="TObjekat"/>
+            </xs:sequence>
+            <xs:attribute default="true" name="Odobreno" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TObjekat">
+        <xs:choice>
+            <xs:element name="Ocena_ID" type="xs:string"/>
+            <xs:element name="Komentar_ID" type="xs:string"/>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:adm="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje">
+    <xs:import
+        namespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje"
+        schemaLocation="administriranje.xsd"/>
+    <xs:element name="Aktivacija">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="adm:Administriranje"/>
+                <xs:element name="Agent_ID" type="adm:TKorisnicko_ime"/>
+            </xs:sequence>
+            <xs:attribute name="Tip" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

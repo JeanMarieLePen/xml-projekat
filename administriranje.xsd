@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje"
+    xmlns:adm="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje"
+    xmlns="https://enastava.ftninformatika.com/courses/257/files/folder/projekat/administriranje">
+
+    <xs:element name="Administriranje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Admin" type="TKorisnicko_ime"/>
+                <xs:element name="Datum" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TKorisnicko_ime">
+        <xs:sequence>
+            <xs:element name="ID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[a-zA-Z_0-9]{3,30}"/>
+                        <xs:minLength value="3"/>
+                        <xs:maxLength value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
