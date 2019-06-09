@@ -1,0 +1,12 @@
+<xu:modifications version="1.0"
+	xmlns:xu="http://www.xmldb.org/xupdate"
+	xmlns="http://www.ftn.uns.ac.rs/examples/xmldb/bookstore">
+	<xu:append select="/bookstore" child="last()">
+		<book category="TEST">
+			<title lang="en">Test book</title>
+			<author>Test Author</author>
+			<year>2016</year>
+			<price>59.99</price>
+		</book>
+	</xu:append>
+</xu:modifications>

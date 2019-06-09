@@ -1,0 +1,11 @@
+<xu:modifications version="1.0"
+	xmlns:xu="http://www.xmldb.org/xupdate"
+	xmlns="http://www.ftn.uns.ac.rs/examples/xmldb/bookstore">
+	<xu:update select="/bookstore/book[1]">
+		<title lang="en">AngularJS in Action</title>
+		<author>Brian Ford</author>
+		<author>Lukas Ruebbelke</author>
+		<year>2014</year>
+		<price>39.60</price>
+	</xu:update>
+</xu:modifications>

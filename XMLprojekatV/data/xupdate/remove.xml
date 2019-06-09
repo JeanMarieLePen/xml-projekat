@@ -1,0 +1,5 @@
+<xu:modifications version="1.0"
+	xmlns:xu="http://www.xmldb.org/xupdate"
+	xmlns="http://www.ftn.uns.ac.rs/examples/xmldb/bookstore">
+	<xu:remove select="/bookstore/book[3]" />
+</xu:modifications>
